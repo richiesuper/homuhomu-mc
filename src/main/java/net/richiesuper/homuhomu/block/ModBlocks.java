@@ -10,10 +10,11 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
+import net.richiesuper.homuhomu.item.ModItemGroup;
 
 public class ModBlocks {
     public static final Block KYUUBEE_BLOCK = registerBlock("kyuubee_block",
-            new Block(FabricBlockSettings.of(Material.WOOL).strength(6f).requiresTool()), ItemGroup.MISC);
+            new Block(FabricBlockSettings.of(Material.WOOL).strength(6f).requiresTool()), ModItemGroup.PMMM);
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
         return Registry.register(Registry.BLOCK, new Identifier(HomuHomu.MOD_ID, name), block);
