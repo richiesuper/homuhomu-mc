@@ -1,6 +1,7 @@
 package net.richiesuper.homuhomu;
 
 import net.fabricmc.api.ModInitializer;
+import net.richiesuper.homuhomu.block.ModBlocks;
 import net.richiesuper.homuhomu.item.ModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,5 +13,6 @@ public class HomuHomu implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }

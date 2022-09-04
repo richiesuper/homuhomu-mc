@@ -8,8 +8,10 @@ import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
 
 public class ModItems {
-    public static final Item GRIEF_SEED = registerItem("grief_seed", new Item(new FabricItemSettings().group(ItemGroup.MISC)));
-    public static final Item SOUL_GEM = registerItem("soul_gem", new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item GRIEF_SEED = registerItem("grief_seed",
+            new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item SOUL_GEM = registerItem("soul_gem",
+            new Item(new FabricItemSettings().group(ItemGroup.MISC)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(HomuHomu.MOD_ID, name), item);
