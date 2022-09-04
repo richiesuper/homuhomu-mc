@@ -1,5 +1,9 @@
 # homuhomu-mc
 
+`homuhomu-mc` is a Minecraft mod that aims to add elements from the anime series
+Puella Magi Madoka Magica.
+
 ## Copyright
 
-Credit me if you use my mod and its assets. You must put my name, e-mail, GitHub profile and repository as attribution.
+All assets are made by me. If you use my assets / mod, you must credit me by
+attributing my name, e-mail, and linking my GitHub profile and repository.
