@@ -12,6 +12,8 @@ public class ModItems {
             new Item(new FabricItemSettings().group(ModItemGroup.PMMM)));
     public static final Item SOUL_GEM = registerItem("soul_gem",
             new Item(new FabricItemSettings().group(ModItemGroup.PMMM)));
+    public static final Item KYUUBEE_INGOT = registerItem("kyuubee_ingot",
+            new Item(new FabricItemSettings().group(ModItemGroup.PMMM)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(HomuHomu.MOD_ID, name), item);

@@ -13,8 +13,11 @@ import net.richiesuper.homuhomu.HomuHomu;
 import net.richiesuper.homuhomu.item.ModItemGroup;
 
 public class ModBlocks {
+    public static final Block KYUUBEE_ORE = registerBlock("kyuubee_ore",
+            new Block(FabricBlockSettings.of(Material.STONE).strength(4.5f).requiresTool()), ModItemGroup.PMMM);
     public static final Block KYUUBEE_BLOCK = registerBlock("kyuubee_block",
-            new Block(FabricBlockSettings.of(Material.WOOL).strength(6f).requiresTool()), ModItemGroup.PMMM);
+            new Block(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), ModItemGroup.PMMM);
+
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
         return Registry.register(Registry.BLOCK, new Identifier(HomuHomu.MOD_ID, name), block);

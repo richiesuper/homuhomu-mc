@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "homuhomu:kyuubee_block"
+    }
+  ],
+  "result": {
+    "item": "homuhomu:kyuubee_ingot",
+    "count": 9
+  }
+}
