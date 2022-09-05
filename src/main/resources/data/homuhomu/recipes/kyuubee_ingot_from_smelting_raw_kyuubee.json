@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 800,
+  "experience": 69,
+  "group": "kyuubee_ingot",
+  "ingredient": {
+    "item": "homuhomu:raw_kyuubee"
+  },
+  "result": "homuhomu:kyuubee_ingot"
+}
