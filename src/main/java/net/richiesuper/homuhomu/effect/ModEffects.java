@@ -10,7 +10,7 @@ public class ModEffects {
 	public static StatusEffect MAGICAL;
 
 	public static StatusEffect registerStatusEffect(String name) {
-		return Registry.register(Registry.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, name), new MagicalEffect(StatusEffectCategory.BENEFICIAL, 0xffff00));
+		return Registry.register(Registry.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, name), new MagicalEffect(StatusEffectCategory.NEUTRAL, 0xffff00));
 	}
 
 	public static void registerEffects() {

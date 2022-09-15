@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "HomuHomu",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "HomuHomu is a Minecraft mod that implements some Puella Magi Madoka Magica aspects.",
   "authors": [
     "richiesuper"
   ],
