@@ -6,7 +6,9 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.random.Random;
 import net.richiesuper.homuhomu.item.ModItems;
 
 public class TransformedEffect extends StatusEffect {
@@ -31,20 +33,21 @@ public class TransformedEffect extends StatusEffect {
                         break;
                     }
                 }
-                itemStack.setDamage(itemStack.getDamage() + normalSoulGemDecay);
+                itemStack.damage(normalSoulGemDecay, Random.createLocal(), (ServerPlayerEntity) player);
 
                 if (player.getHealth() <= playerHealthThreshold && player.isAlive()) {
                     player.setHealth(player.getMaxHealth());
                     if (itemStack.getDamage() + soulGemDeathPenalty >= itemStack.getMaxDamage()) {
-                        itemStack.setDamage(itemStack.getMaxDamage());
+                        itemStack.damage(itemStack.getMaxDamage() - itemStack.getDamage(), Random.createLocal(), (ServerPlayerEntity) player);
                     } else {
-                        itemStack.setDamage(itemStack.getDamage() + soulGemDeathPenalty);
+                        itemStack.damage(soulGemDeathPenalty, Random.createLocal(), (ServerPlayerEntity) player);
                     }
                 }
 
-                if (itemStack.getDamage() >= itemStack.getMaxDamage()) {
-                    itemStack.damage(0, entity, e -> e.sendEquipmentBreakStatus(EquipmentSlot.byName("Soul Gem")));
+                if (itemStack.getDamage() >= itemStack.getMaxDamage() && player.isAlive()) {
+                    itemStack.damage(1, Random.createLocal(), (ServerPlayerEntity) player);
                     player.dropItem(ModItems.GRIEF_SEED);
+                    player.kill();
                 }
             }
         }
