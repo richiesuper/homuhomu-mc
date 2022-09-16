@@ -9,15 +9,16 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.richiesuper.homuhomu.effect.ModEffects;
 
 public class SoulGemItem extends Item {
-    private static final int BASE_COOLDOWN = 4800;
-    private static final int BASE_EFFECT_DURATION = 2400;
-
-    private static int usageTickCount = 0;
+    private static final int BASE_COOLDOWN = 600;
+    private static final int BASE_EFFECT_DURATION = 300;
 
     public SoulGemItem(Settings settings) {
         super(settings);
@@ -38,16 +39,49 @@ public class SoulGemItem extends Item {
     }
 
     @Override
-    public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        usageTickCount++;
+    public int getMaxUseTime(ItemStack stack) {
+        return 1200; // 1 minute
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.BOW;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        user.setCurrentHand(hand);
+        return TypedActionResult.success(user.getStackInHand(hand), false);
+    }
+
+    @Override
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        if (!world.isClient() && user.hasStatusEffect(ModEffects.MAGICAL)) {
+            PlayerEntity player = (PlayerEntity) user;
+
+            int multiplier = (getMaxUseTime(stack) - remainingUseTicks) / 20;
+            int duration = BASE_EFFECT_DURATION * multiplier;
+            int cooldown = BASE_COOLDOWN * multiplier;
+
+            user.addStatusEffect(new StatusEffectInstance(ModEffects.TRANSFORMED, duration, 0, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, duration, 2, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, duration, 2, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, duration, 1, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, duration, 2, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, duration, 0, true, true, true));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, duration, 0, true, true, true));
+
+            declareMagical(player);
+            player.getItemCooldownManager().set(this, cooldown);
+        }
     }
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (!world.isClient()) {
+        if (!world.isClient() && user.hasStatusEffect(ModEffects.MAGICAL)) {
             PlayerEntity player = (PlayerEntity) user;
 
-            int multiplier = usageTickCount / 20;
+            int multiplier = getMaxUseTime(stack);
             int duration = BASE_EFFECT_DURATION * multiplier;
             int cooldown = BASE_COOLDOWN * multiplier;
 
@@ -63,7 +97,6 @@ public class SoulGemItem extends Item {
             player.getItemCooldownManager().set(this, cooldown);
         }
 
-        usageTickCount = 0;
         return stack;
     }
 
