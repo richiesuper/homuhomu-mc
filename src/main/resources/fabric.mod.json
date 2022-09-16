@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "homuhomu",
   "version": "${version}",
-
   "name": "HomuHomu",
   "description": "HomuHomu is a Minecraft mod that implements some Puella Magi Madoka Magica aspects.",
   "authors": [
@@ -12,20 +11,20 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-
   "license": "MIT",
   "icon": "assets/modid/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
       "net.richiesuper.homuhomu.HomuHomu"
+    ],
+    "client": [
+      "net.richiesuper.homuhomu.HomuHomuClient"
     ]
   },
   "mixins": [
     "homuhomu.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.14.9",
     "fabric-api": "*",
