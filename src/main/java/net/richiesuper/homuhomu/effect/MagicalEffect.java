@@ -5,10 +5,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.random.Random;
 import net.richiesuper.homuhomu.item.ModItems;
 
 public class MagicalEffect extends StatusEffect {
@@ -21,10 +18,9 @@ public class MagicalEffect extends StatusEffect {
 
         if (!entity.world.isClient() && entity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entity;
-            if (!player.getInventory().contains(new ItemStack(ModItems.SOUL_GEM))) {
+            if (!player.getInventory().contains(new ItemStack(ModItems.SOUL_GEM)) && player.isAlive()) {
                 player.sendMessage(Text.literal(player.getEntityName() + " lost their Soul Gem and died!"));
                 player.kill();
-                player.dropItem(ModItems.GRIEF_SEED);
             }
         }
     }
