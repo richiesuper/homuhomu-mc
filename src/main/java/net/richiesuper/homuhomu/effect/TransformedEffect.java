@@ -44,8 +44,8 @@ public class TransformedEffect extends StatusEffect {
 
                 if (itemStack.getDamage() >= itemStack.getMaxDamage()) {
                     itemStack.damage(0, entity, e -> e.sendEquipmentBreakStatus(EquipmentSlot.byName("Soul Gem")));
+                    player.dropItem(ModItems.GRIEF_SEED);
                 }
-
             }
         }
     }
