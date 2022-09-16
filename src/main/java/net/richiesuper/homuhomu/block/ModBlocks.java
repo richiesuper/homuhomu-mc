@@ -4,19 +4,22 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.OreBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
 import net.richiesuper.homuhomu.item.ModItemGroup;
 
 public class ModBlocks {
     public static final Block KYUUBEE_ORE = registerBlock("kyuubee_ore",
-            new Block(FabricBlockSettings.of(Material.STONE).strength(18f).requiresTool()), ModItemGroup.PMMM);
+            new OreBlock(FabricBlockSettings.of(Material.STONE).strength(255f, 255f).requiresTool().luminance(127),
+                    UniformIntProvider.create(16, 69)), ModItemGroup.PMMM);
     public static final Block KYUUBEE_BLOCK = registerBlock("kyuubee_block",
-            new Block(FabricBlockSettings.of(Material.METAL).strength(24f).requiresTool()), ModItemGroup.PMMM);
+            new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).strength(255f, 255f).requiresTool().luminance(255)), ModItemGroup.PMMM);
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
