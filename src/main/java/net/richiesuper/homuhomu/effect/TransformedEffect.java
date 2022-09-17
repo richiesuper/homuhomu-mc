@@ -1,6 +1,5 @@
 package net.richiesuper.homuhomu.effect;
 
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -15,7 +14,7 @@ public class TransformedEffect extends StatusEffect {
     private static final int normalSoulGemDecay = 1;
     private static final int soulGemDeathPenalty = 3000;
     private static final float playerHealthThreshold = 8f;
-    private static final int invSlotCount = 54;
+    private static final int invSlotCount = 41; // 27 storage, 9 hotbar, 4 armor, 1 offhand
 
     public TransformedEffect(StatusEffectCategory statusEffectCategory, int color) {
         super(statusEffectCategory, color);
@@ -26,7 +25,8 @@ public class TransformedEffect extends StatusEffect {
 
         if (!entity.world.isClient() && entity instanceof PlayerEntity player) {
             ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
-            if (player.getInventory().contains(new ItemStack(ModItems.SOUL_GEM))) {
+            ItemStack targetStack = new ItemStack(ModItems.SOUL_GEM);
+            if (player.getInventory().contains(targetStack)) {
                 for (int i = 0; i < invSlotCount; ++i) {
                     itemStack = player.getInventory().getStack(i);
                     if (itemStack.getItem() == ModItems.SOUL_GEM) {
@@ -45,9 +45,8 @@ public class TransformedEffect extends StatusEffect {
                 }
 
                 if (itemStack.getDamage() >= itemStack.getMaxDamage() && player.isAlive()) {
-                    itemStack.damage(1, Random.createLocal(), (ServerPlayerEntity) player);
+                    player.getInventory().removeOne(itemStack);
                     player.dropItem(ModItems.GRIEF_SEED);
-                    player.kill();
                 }
             }
         }
