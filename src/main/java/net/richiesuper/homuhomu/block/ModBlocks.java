@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
+import net.richiesuper.homuhomu.block.custom.KyuubeeBlock;
 import net.richiesuper.homuhomu.item.ModItemGroup;
 
 public class ModBlocks {
@@ -19,7 +20,7 @@ public class ModBlocks {
             new OreBlock(FabricBlockSettings.of(Material.STONE).strength(255f, 255f).requiresTool().luminance(127),
                     UniformIntProvider.create(16, 69)), ModItemGroup.PMMM);
     public static final Block KYUUBEE_BLOCK = registerBlock("kyuubee_block",
-            new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).strength(255f, 255f).requiresTool().luminance(255)), ModItemGroup.PMMM);
+            new KyuubeeBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT).strength(255f, 255f).requiresTool().luminance(255)), ModItemGroup.PMMM);
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
