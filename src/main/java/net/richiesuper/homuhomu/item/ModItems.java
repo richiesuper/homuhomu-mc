@@ -6,11 +6,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
+import net.richiesuper.homuhomu.item.custom.GriefSeedItem;
 import net.richiesuper.homuhomu.item.custom.SoulGemItem;
 
 public class ModItems {
     public static final Item GRIEF_SEED = registerItem("grief_seed",
-            new Item(new FabricItemSettings().group(ModItemGroup.PMMM).maxDamage(54000).rarity(Rarity.EPIC).fireproof()));
+            new GriefSeedItem(new FabricItemSettings().group(ModItemGroup.PMMM).maxDamage(54000).rarity(Rarity.EPIC).fireproof()));
     public static final Item SOUL_GEM = registerItem("soul_gem",
             new SoulGemItem(new FabricItemSettings().group(ModItemGroup.PMMM).maxDamage(54000).rarity(Rarity.EPIC).fireproof()));
     public static final Item RAW_KYUUBEE = registerItem("raw_kyuubee",
