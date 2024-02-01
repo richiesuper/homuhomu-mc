@@ -23,7 +23,7 @@ public class TransformedEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 
-        if (!entity.world.isClient() && entity instanceof PlayerEntity player) {
+        if (!entity.getWorld().isClient() && entity instanceof PlayerEntity player) {
             ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
             ItemStack targetStack = new ItemStack(ModItems.SOUL_GEM);
             if (player.getInventory().contains(targetStack)) {
