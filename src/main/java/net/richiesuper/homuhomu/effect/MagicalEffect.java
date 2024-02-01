@@ -19,8 +19,7 @@ public class MagicalEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 
-        if (!entity.world.isClient() && entity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) entity;
+        if (!entity.getWorld().isClient() && entity instanceof PlayerEntity player) {
             if (!player.getInventory().contains(new ItemStack(ModItems.SOUL_GEM)) && player.isAlive()) {
                 player.sendMessage(Text.literal(player.getEntityName() + " lost their Soul Gem and died!"));
                 player.kill();

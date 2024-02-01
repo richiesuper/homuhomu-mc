@@ -2,8 +2,9 @@ package net.richiesuper.homuhomu.effect;
 
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
 
 public class ModEffects {
@@ -12,7 +13,7 @@ public class ModEffects {
 
     /* currently unused */
     public static StatusEffect registerStatusEffect(String name) {
-        return Registry.register(Registry.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, name), new MagicalEffect(StatusEffectCategory.BENEFICIAL, 0xffff00));
+        return Registry.register(Registries.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, name), new MagicalEffect(StatusEffectCategory.BENEFICIAL, 0xffff00));
     }
 
     public static void registerEffects() {
@@ -20,9 +21,9 @@ public class ModEffects {
         MAGICAL = registerStatusEffect("magical");
         TRANSFORMED = registerStatusEffect("transformed");
          */
-        MAGICAL = Registry.register(Registry.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, "magical"),
+        MAGICAL = Registry.register(Registries.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, "magical"),
                 new MagicalEffect(StatusEffectCategory.BENEFICIAL, 0xffff00));
-        TRANSFORMED = Registry.register(Registry.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, "transformed"),
+        TRANSFORMED = Registry.register(Registries.STATUS_EFFECT, new Identifier(HomuHomu.MOD_ID, "transformed"),
                 new TransformedEffect(StatusEffectCategory.BENEFICIAL, 0xffff00));
     }
 }

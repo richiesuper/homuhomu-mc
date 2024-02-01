@@ -20,6 +20,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.explosion.Explosion;
+import net.richiesuper.homuhomu.effect.ModEffects;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -34,17 +35,19 @@ public class KyuubeeBlock extends Block {
         tooltip.add(Text.literal("Kyuubee Block(s) can spawn Incubator into the world!").formatted(Formatting.LIGHT_PURPLE));
     }
 
-    public void onSteppedOnPrank1(World world, BlockPos pos, BlockState state, Entity entity) {
+    @Override
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (!world.isClient()) {
             if (entity instanceof PlayerEntity playerEntity) {
-                playerEntity.teleport(pos.getX(), pos.getY() + 127, pos.getZ());
+                playerEntity.addStatusEffect(new StatusEffectInstance(ModEffects.MAGICAL, 5));
+//                playerEntity.teleport(pos.getX(), pos.getY() + 127, pos.getZ());
             }
         }
     }
 
     public void onPlacedPrank1(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (!world.isClient()) {
-            world.createExplosion(null, placer.getX(), placer.getY(), placer.getZ(), 16f, true, Explosion.DestructionType.DESTROY);
+            world.createExplosion(null, placer.getX(), placer.getY(), placer.getZ(), 16f, true, World.ExplosionSourceType.TNT);
         }
     }
 

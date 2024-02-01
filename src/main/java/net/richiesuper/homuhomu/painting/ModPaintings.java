@@ -1,8 +1,9 @@
 package net.richiesuper.homuhomu.painting;
 
 import net.minecraft.entity.decoration.painting.PaintingVariant;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.richiesuper.homuhomu.HomuHomu;
 
 public class ModPaintings {
@@ -14,7 +15,7 @@ public class ModPaintings {
     public static final PaintingVariant KYUUBEE = registerPainting("kyuubee", new PaintingVariant(92, 74));
 
     public static PaintingVariant registerPainting(String name, PaintingVariant paintingVariant) {
-        return Registry.register(Registry.PAINTING_VARIANT, new Identifier(HomuHomu.MOD_ID, name), paintingVariant);
+        return Registry.register(Registries.PAINTING_VARIANT, new Identifier(HomuHomu.MOD_ID, name), paintingVariant);
     }
 
     public static void registerPaintings() {
